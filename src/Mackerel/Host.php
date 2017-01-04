@@ -85,7 +85,7 @@ class Host
      */
     public function ipAddr()
     {
-        foreach($this->interfaces as $interface) {
+        foreach ($this->interfaces as $interface) {
             if (preg_match(self::MACKEREL_INTERFACE_NAME_PATTERN, $interface['name'])) {
                 return $interface['ipAddress'];
             }
@@ -99,7 +99,7 @@ class Host
      */
     public function macAddr()
     {
-        foreach($this->interfaces as $interface) {
+        foreach ($this->interfaces as $interface) {
             if (preg_match(self::MACKEREL_INTERFACE_NAME_PATTERN, $interface['name'])) {
                 return $interface['macAddress'];
             }

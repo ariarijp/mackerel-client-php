@@ -70,7 +70,7 @@ class Client
 
     /**
      * @param Host $host
-     * @return string
+     * @return array|null
      * @throws \Exception
      */
     public function postHost(Host $host)
@@ -106,6 +106,12 @@ class Client
         return new Host($data['host']);
     }
 
+    /**
+     * @param $hostId
+     * @param $status
+     * @return array|null
+     * @throws \Exception
+     */
     public function updateHostStatus($hostId, $status)
     {
         if (!in_array($status, ['standby', 'working', 'maintenance', 'poweroff'])) {
@@ -147,7 +153,7 @@ class Client
 
     /**
      * @param array $metrics
-     * @return mixed
+     * @return array|null
      * @throws \Exception
      */
     public function postMetrics(array $metrics)
@@ -167,7 +173,7 @@ class Client
     /**
      * @param array $hostIds
      * @param array $names
-     * @return mixed
+     * @return array|null
      * @throws \Exception
      */
     public function getLatestMetrics(array $hostIds, array $names)
@@ -196,7 +202,7 @@ class Client
     /**
      * @param string $serviceName
      * @param array $metrics
-     * @return mixed
+     * @return array|null
      * @throws \Exception
      */
     public function postServiceMetrics($serviceName, array $metrics)
@@ -215,7 +221,7 @@ class Client
 
     /**
      * @param array $graphDefs
-     * @return mixed
+     * @return array|null
      * @throws \Exception
      */
     public function defineGraphs(array $graphDefs)
@@ -234,7 +240,7 @@ class Client
 
     /**
      * @param array $opts
-     * @return array
+     * @return Host[]
      * @throws \Exception
      */
     public function getHosts(array $opts = [])
@@ -281,7 +287,7 @@ class Client
     }
 
     /**
-     * @return array
+     * @return Monitor[]
      * @throws \Exception
      */
     public function getMonitors()
@@ -303,7 +309,7 @@ class Client
     /**
      * @param string $monitorId
      * @param Monitor $monitor
-     * @return mixed
+     * @return array|null
      * @throws \Exception
      */
     public function updateMonitor($monitorId, Monitor $monitor)
