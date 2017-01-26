@@ -1,5 +1,8 @@
 # mackerel-client-php
 
+[![Latest Unstable Version](https://poser.pugx.org/ariarijp/mackerel-client/v/unstable)](https://packagist.org/packages/ariarijp/mackerel-client)
+[![Total Downloads](https://poser.pugx.org/ariarijp/mackerel-client/downloads)](https://packagist.org/packages/ariarijp/mackerel-client)
+
 mackerel-client-php is an unofficial port of [mackerelio/mackerel-client-ruby](https://github.com/mackerelio/mackerel-client-ruby).
 
 ## Usage
