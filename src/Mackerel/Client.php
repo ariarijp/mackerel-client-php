@@ -140,7 +140,6 @@ class Client
      */
     public function updateHostRoleFullnames($hostId, array $roleFullnames)
     {
-
         $path = sprintf('/api/v0/hosts/%s/role-fullnames', $hostId);
         $response = $this->client->put($path, [
             'body' => json_encode([
