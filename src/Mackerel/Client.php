@@ -133,6 +133,27 @@ class Client
     }
 
     /**
+     * @param $hostId
+     * @param array $roleFullnames
+     * @return mixed
+     * @throws \Exception
+     */
+    public function updateHostRoleFullnames($hostId, array $roleFullnames)
+    {
+        $path = sprintf('/api/v0/hosts/%s/role-fullnames', $hostId);
+        $response = $this->client->put($path, [
+            'body' => json_encode([
+                'roleFullnames' => $roleFullnames,
+            ]),
+        ]);
+
+        if ($response->getStatusCode() != 200) {
+            throw new \Exception(sprintf('POST %s failed: %d', $path, $response->getStatusCode()));
+        }
+        return json_decode($response->getBody()->getContents(), true);
+    }
+
+    /**
      * @param string $hostId
      * @return Host
      * @throws \Exception
