@@ -365,4 +365,93 @@ class Client
 
         return new Monitor($data);
     }
+
+    /**
+     * @param GraphAnnotation $annotation
+     * @return GraphAnnotation
+     * @throws \Exception
+     */
+    public function postGraphAnnotation(GraphAnnotation $annotation)
+    {
+        $path = '/api/v0/graph-annotations';
+        $response = $this->client->post($path, [
+            'body' => $annotation->toJson(),
+        ]);
+
+        if ($response->getStatusCode() != 200) {
+            throw new \Exception(sprintf('POST %s failed: %d', $path, $response->getStatusCode()));
+        }
+
+        $data = json_decode($response->getBody()->getContents(), true);
+
+        return new GraphAnnotation($data);
+    }
+
+    /**
+     * @param string $service
+     * @param int $from
+     * @param int $to
+     * @return GraphAnnotation[]
+     * @throws \Exception
+     */
+    public function getGraphAnnotations($service, $from, $to)
+    {
+        $path = '/api/v0/graph-annotations';
+        $response = $this->client->get($path, [
+            'query' => [
+                'service' => $service,
+                'from' => $from,
+                'to' => $to,
+            ],
+        ]);
+
+        if ($response->getStatusCode() != 200) {
+            throw new \Exception(sprintf('GET %s failed: %d', $path, $response->getStatusCode()));
+        }
+
+        $data = json_decode($response->getBody()->getContents(), true);
+
+        return array_map(function (array $annotationJson) {
+            return new GraphAnnotation($annotationJson);
+        }, $data['graphAnnotations']);
+    }
+
+    /**
+     * @param string $annotationId
+     * @param GraphAnnotation $annotation
+     * @return array|null
+     * @throws \Exception
+     */
+    public function updateGraphAnnotation($annotationId, GraphAnnotation $annotation)
+    {
+        $path = '/api/v0/graph-annotations/' . $annotationId;
+        $response = $this->client->put($path, [
+            'body' => $annotation->toJson(),
+        ]);
+
+        if ($response->getStatusCode() != 200) {
+            throw new \Exception(sprintf('PUT %s failed: %d', $path, $response->getStatusCode()));
+        }
+
+        return json_decode($response->getBody()->getContents(), true);
+    }
+
+    /**
+     * @param string $annotationId
+     * @return GraphAnnotation
+     * @throws \Exception
+     */
+    public function deleteGraphAnnotation($annotationId)
+    {
+        $path = '/api/v0/graph-annotations/' . $annotationId;
+        $response = $this->client->delete($path);
+
+        if ($response->getStatusCode() != 200) {
+            throw new \Exception(sprintf('DELETE %s failed: %d', $path, $response->getStatusCode()));
+        }
+
+        $data = json_decode($response->getBody()->getContents(), true);
+
+        return new GraphAnnotation($data);
+    }
 }
