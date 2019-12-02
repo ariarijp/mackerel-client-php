@@ -1,6 +1,6 @@
 {
     "name": "ariarijp/mackerel-client",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "type": "library",
     "description": "mackerel-client-php is an unofficial port of mackerelio/mackerel-client-ruby.",
     "keywords": ["monitoring"],
