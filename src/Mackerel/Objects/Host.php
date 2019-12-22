@@ -2,12 +2,13 @@
 
 namespace Mackerel\Objects;
 
-class Host
+class Host extends AbstractObject
 {
     const MACKEREL_INTERFACE_NAME_PATTERN = '/^eth\d/';
 
     /**
      * @var array
+     * @deprecated
      */
     public $hash;
 
@@ -62,22 +63,12 @@ class Host
     public $interfaces;
 
     /**
-     * Host constructor.
      * @param array $args
      */
-    public function __construct(array $args)
+    public function __construct(array $args = [])
     {
         $this->hash = $args;
-        $this->name = $args['name'];
-        $this->meta = $args['meta'];
-        $this->type = $args['type'];
-        $this->status = $args['status'];
-        $this->memo = $args['memo'];
-        $this->isRetired = $args['isRetired'];
-        $this->id = $args['id'];
-        $this->createdAt = $args['createdAt'];
-        $this->roles = $args['roles'];
-        $this->interfaces = $args['interfaces'];
+        parent::__construct($args);
     }
 
     /**
@@ -110,9 +101,10 @@ class Host
 
     /**
      * @return array
+     * @deprecated
      */
     public function toHash()
     {
-        return $this->hash;
+        return $this->toH();
     }
 }

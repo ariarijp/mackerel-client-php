@@ -2,7 +2,7 @@
 
 namespace Mackerel\Objects;
 
-class GraphAnnotation
+class GraphAnnotation extends AbstractObject
 {
     /**
      * @var string
@@ -38,33 +38,4 @@ class GraphAnnotation
      * @var array
      */
     public $roles;
-
-    /**
-     * GraphAnnotation constructor.
-     * @param array $args
-     */
-    public function __construct(array $args = [])
-    {
-        foreach (array_keys($this->toH()) as $k) {
-            if (array_key_exists($k, $args)) {
-                $this->$k = $args[$k];
-            }
-        }
-    }
-
-    /**
-     * @return array
-     */
-    public function toH()
-    {
-        return get_object_vars($this);
-    }
-
-    /**
-     * @return string
-     */
-    public function toJson()
-    {
-        return json_encode($this->toH());
-    }
 }
