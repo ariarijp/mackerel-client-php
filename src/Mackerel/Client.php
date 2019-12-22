@@ -3,6 +3,9 @@
 namespace Mackerel;
 
 use GuzzleHttp\Client as HttpClient;
+use Mackerel\Objects\GraphAnnotation;
+use Mackerel\Objects\Host;
+use Mackerel\Objects\Monitor;
 
 class Client
 {

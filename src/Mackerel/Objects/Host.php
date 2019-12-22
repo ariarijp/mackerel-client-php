@@ -1,6 +1,6 @@
 <?php
 
-namespace Mackerel;
+namespace Mackerel\Objects;
 
 class Host
 {
