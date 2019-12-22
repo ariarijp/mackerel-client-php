@@ -1,46 +1,12 @@
 <?php
 
-namespace Mackerel;
 
-class GraphAnnotation
+namespace Mackerel\Objects;
+
+
+abstract class AbstractObject
 {
     /**
-     * @var string
-     */
-    public $id;
-
-    /**
-     * @var string
-     */
-    public $title;
-
-    /**
-     * @var string
-     */
-    public $description;
-
-    /**
-     * @var int
-     */
-    public $from;
-
-    /**
-     * @var int
-     */
-    public $to;
-
-    /**
-     * @var string
-     */
-    public $service;
-
-    /**
-     * @var array
-     */
-    public $roles;
-
-    /**
-     * GraphAnnotation constructor.
      * @param array $args
      */
     public function __construct(array $args = [])
